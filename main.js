@@ -4,6 +4,9 @@ var easyBtn = document.querySelector("#easyBtn");
 var hardBtn = document.querySelector("#hardBtn");
 var rgbDisplay = document.querySelector("#rgbDisplay");
 var infoDisplay = document.querySelector("#infoDisplay");
+var streakScore = document.querySelector("#streakScore");
+var para = document.querySelector("p");
+var streakScoreNum = 0;
 var colorArray = [];
 var winningColor;
 var hardModeNum = 6;
@@ -18,11 +21,17 @@ function init() {
     for(var i = 0; i < colorSquare.length; i++){
         colorSquare[i].addEventListener("click", function(){
             if(this.style.backgroundColor === winningColor){
-                infoDisplay.textContent = "Winner!"
+                infoDisplay.textContent = "Correct!"
+                para.classList.remove("streakBroken");
+                para.classList.add("streakIncrease");
+                streakScore.textContent = "Streak: " + (streakScoreNum +=1);
                 winner(winningColor);
-                resetBtn.textContent = "Play again?"
             } else {
-                infoDisplay.textContent = "Try again";
+                if(streakScoreNum > 0){
+                    streakBroken("Streak broken, try again?");
+                } else {
+                    streakBroken("Try again?");
+                }
             }
         });
     }
@@ -33,7 +42,6 @@ function init() {
         } else {
             reset(easyModeNum)
         }
-        
     });
 
     hardBtn.addEventListener("click", function(){
@@ -44,6 +52,7 @@ function init() {
             colorSquare[i].style.display = "block";
         }
         reset(hardModeNum);
+        streakBroken("Streak broken");
     });
 
     easyBtn.addEventListener("click", function(){
@@ -54,6 +63,7 @@ function init() {
             colorSquare[i].style.display = "none";
         }
         reset(easyModeNum);
+        streakBroken("Streak broken");
     });
 }
 
@@ -89,6 +99,7 @@ function winner(rgb){
     for(var i = 0; i < colorSquare.length; i++){
         colorSquare[i].style.backgroundColor = rgb;
     }
+    para.classList.add("streakIncrease");
     if(hardMode){
         setTimeout(reset, 1000, hardModeNum);
     } else {
@@ -102,5 +113,14 @@ function reset(numOfSquares){
     rgbDisplay.textContent = winningColor;
     infoDisplay.textContent = "";
     assignRandomColorToSquare(colorArray);
-    resetBtn.textContent = "New Colors";
+    para.classList.remove("streakIncrease");
+    para.classList.remove("streakBroken");
+}
+
+function streakBroken(infoString){
+    infoDisplay.textContent = infoString;
+    streakScoreNum = 0;
+    streakScore.textContent = "Streak: " + streakScoreNum
+    para.classList.remove("streakIncrease");
+    para.classList.add("streakBroken");
 }

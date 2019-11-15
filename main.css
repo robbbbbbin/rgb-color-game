@@ -18,11 +18,19 @@ p {
     height: 30px;
 }
 
+.streakIncrease {
+    background-color: green;
+}
+
+.streakBroken {
+    background-color: red;
+}
+
 button {
     border: none;
     background: none;
     text-transform: uppercase;
-    color: steelblue;
+    color: black;
     font-weight: 700;
     height: 100%;
     margin: 0;
@@ -41,6 +49,16 @@ button:hover {
 #infoDisplay {
     display: inline-block;
     width: 30%
+}
+
+#streakScore {
+    display: inline-block;
+    padding: 6px;
+    position: absolute;
+    margin: 0;
+    height: 100%;
+    font-weight: 700;
+    margin-left: 50px;
 }
 
 #container {
