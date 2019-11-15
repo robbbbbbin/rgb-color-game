@@ -1,6 +1,7 @@
 body {
     background-color: darkslategrey;
     margin: 0;
+    font-family: 'Raleway', sans-serif;
 }
 
 #heading {
@@ -54,10 +55,9 @@ button:hover {
 .scoreBoard {
     display: inline-block;
     padding: 6px;
-    margin: 0;
+    margin: 3px 20px;
     height: 100%;
     font-weight: 700;
-    margin-left: 50px;
     color: white;
 }
 
