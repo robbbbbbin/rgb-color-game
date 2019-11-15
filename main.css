@@ -51,15 +51,29 @@ button:hover {
     width: 30%
 }
 
-#streakScore {
+.scoreBoard {
     display: inline-block;
     padding: 6px;
-    position: absolute;
     margin: 0;
     height: 100%;
     font-weight: 700;
     margin-left: 50px;
+    color: white;
 }
+
+#scoreBoardDisplay {
+    text-align: center;
+    margin: auto;
+}
+
+#streakScoreID {
+
+}
+
+#highScoreID {
+
+}
+
 
 #container {
     margin: 20px auto;

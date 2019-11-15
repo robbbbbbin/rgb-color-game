@@ -4,9 +4,11 @@ var easyBtn = document.querySelector("#easyBtn");
 var hardBtn = document.querySelector("#hardBtn");
 var rgbDisplay = document.querySelector("#rgbDisplay");
 var infoDisplay = document.querySelector("#infoDisplay");
-var streakScore = document.querySelector("#streakScore");
+var streakScore = document.querySelector("#streakScoreID");
+var highScore = document.querySelector("#highScoreID");
 var para = document.querySelector("p");
 var streakScoreNum = 0;
+var highScoreNum = 0;
 var colorArray = [];
 var winningColor;
 var hardModeNum = 6;
@@ -24,7 +26,8 @@ function init() {
                 infoDisplay.textContent = "Correct!"
                 para.classList.remove("streakBroken");
                 para.classList.add("streakIncrease");
-                streakScore.textContent = "Streak: " + (streakScoreNum +=1);
+                streakScore.textContent = "Current Streak: " + (streakScoreNum +=1);
+                checkHighScore();
                 winner(winningColor);
             } else {
                 if(streakScoreNum > 0){
@@ -120,7 +123,15 @@ function reset(numOfSquares){
 function streakBroken(infoString){
     infoDisplay.textContent = infoString;
     streakScoreNum = 0;
-    streakScore.textContent = "Streak: " + streakScoreNum
+    streakScore.textContent = "Current Streak: " + streakScoreNum
     para.classList.remove("streakIncrease");
     para.classList.add("streakBroken");
+}
+
+function checkHighScore(){
+    console.log("Current score: " + streakScoreNum);
+    console.log("HighScore: " + highScoreNum);
+    if(streakScoreNum > highScoreNum){
+        highScore.textContent = "Highscore: " + (highScoreNum +=1);
+    }
 }
